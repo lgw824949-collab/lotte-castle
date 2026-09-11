@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>상동역 롯데캐슬 시그니처 | 관심고객 등록</title>
+  <meta name="description" content="지하 8층~지상 49층, 7개동 총 1,859세대. 계약금 1천만 원 정액제 · 중도금 무이자 · 발코니 확장 무상. 상동역 롯데캐슬 시그니처 관심고객 등록." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: "#0A192F", 950: "#050C18", 900: "#06101F", 800: "#0E2138", 700: "#132A46" },
+            gold: { DEFAULT: "#C5A059", 200: "#E8D4A8", 300: "#E0C58A", 600: "#A8843F" }
+          },
+          fontFamily: {
+            sans: ["Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 5.25rem; }
+    body { background: #0A192F; }
+    .gold-line { background: linear-gradient(90deg, transparent, #C5A059, transparent); }
+    .hero-wash {
+      background:
+        radial-gradient(ellipse 90% 55% at 78% 8%, rgba(197,160,89,0.22), transparent 52%),
+        radial-gradient(ellipse 60% 45% at 8% 88%, rgba(19,42,70,0.95), transparent 48%),
+        linear-gradient(180deg, rgba(5,12,24,0.2) 0%, rgba(10,25,47,0.72) 58%, #0A192F 100%);
+    }
+    .grid-overlay {
+      background-image:
+        linear-gradient(rgba(197,160,89,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(197,160,89,0.055) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.is-in { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.22s; }
+    .delay-3 { transition-delay: 0.34s; }
+    .gold-border {
+      border: 1px solid rgba(197,160,89,0.32);
+      box-shadow: inset 0 0 0 1px rgba(197,160,89,0.06);
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .gold-text {
+      color: #C5A059;
+      background: linear-gradient(90deg, #E8D4A8, #C5A059, #8C6A2E, #C5A059, #E8D4A8);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 9s linear infinite;
+    }
+    @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+      .gold-text { color: #C5A059; -webkit-text-fill-color: #C5A059; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .float-slow { animation: float 7s ease-in-out infinite; }
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(197,160,89,0.45);
+    }
+    select option { color: #0A192F; }
+  </style>
+</head>
+<body class="font-sans text-white antialiased">
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#hero" class="flex items-center gap-3">
+        <span class="h-8 w-px bg-gold"></span>
+        <span class="text-[11px] font-medium uppercase tracking-[0.28em] text-gold-300">LOTTE CASTLE</span>
+        <span class="hidden text-sm tracking-wide text-white/90 sm:inline">시그니처</span>
+      </a>
+      <nav class="hidden items-center gap-6 text-[13px] tracking-wide text-white/80 xl:flex">
+        <a href="#overview" class="transition hover:text-gold-300">사업개요</a>
+        <a href="#premium" class="transition hover:text-gold-300">프리미엄</a>
+        <a href="#location" class="transition hover:text-gold-300">입지환경</a>
+        <a href="#community" class="transition hover:text-gold-300">커뮤니티</a>
+        <a href="#register" class="rounded-full border border-gold/70 bg-gold/10 px-5 py-2 text-gold-300 transition hover:bg-gold hover:text-navy">관심고객등록</a>
+      </nav>
+      <button id="menu-btn" class="p-2 text-gold-300 xl:hidden" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gold/20 bg-navy-900/95 backdrop-blur xl:hidden">
+      <div class="flex flex-col gap-1 px-5 py-4 text-sm">
+        <a href="#overview" class="mobile-link border-b border-white/10 py-3">사업개요</a>
+        <a href="#premium" class="mobile-link border-b border-white/10 py-3">프리미엄</a>
+        <a href="#location" class="mobile-link border-b border-white/10 py-3">입지환경</a>
+        <a href="#community" class="mobile-link border-b border-white/10 py-3">커뮤니티</a>
+        <a href="#register" class="mobile-link py-3 text-gold-300">관심고객등록</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero" class="relative min-h-screen overflow-hidden">
+    <!-- EMBEDDED IMAGE LINE 114 LEN=459600 -->
+    <div class="absolute inset-0 bg-navy/55"></div>
+
+    <div class="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-5 pb-24 pt-32 lg:px-8">
+      <p class="reveal text-[11px] uppercase tracking-[0.42em] text-gold-300">Bucheon Sangdong · Landmark Residence</p>
+      <div class="reveal delay-1 mt-5 h-px w-24 bg-gold"></div>
+      <h1 class="reveal delay-1 mt-8 text-4xl font-light leading-tight sm:text-6xl lg:text-7xl">
+        상동역<br />
+        <span class="gold-text font-medium">롯데캐슬 시그니처</span>
+      </h1>
+      <p class="reveal delay-2 mt-6 max-w-2xl text-base leading-relaxed text-white/75 sm:text-xl">
+        지하 8층 ~ 지상 49층, 7개동, 총 1,859세대<br class="hidden sm:block" />
+        대단지 랜드마크
+      </p>
+
+      <div class="reveal delay-3 mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
+        <div class="gold-border bg-white/5 px-5 py-4 backdrop-blur-sm">
+          <p class="text-[11px] tracking-widest text-gold-300">CONTRACT</p>
+          <p class="mt-1 text-lg font-medium">계약금 1천만 원 정액제</p>
+        </div>
+        <div class="gold-border bg-white/5 px-5 py-4 backdrop-blur-sm">
+          <p class="text-[11px] tracking-widest text-gold-300">INTERIM</p>
+          <p class="mt-1 text-lg font-medium">중도금 무이자</p>
+        </div>
+        <div class="gold-border bg-white/5 px-5 py-4 backdrop-blur-sm">
+          <p class="text-[11px] tracking-widest text-gold-300">BALCONY</p>
+          <p class="mt-1 text-lg font-medium">발코니 확장 무상</p>
+        </div>
+      </div>
+
+      <div class="reveal delay-3 mt-12">
+        <a href="#register" class="inline-flex items-center gap-3 rounded-full bg-gold px-8 py-4 text-sm font-semibold tracking-wide text-navy shadow-[0_12px_40px_rgba(197,160,89,0.28)] transition hover:bg-gold-300">
+          간편 관심고객 등록하기
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="overview" class="relative bg-navy-900 py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="reveal">
+        <p class="text-[11px] uppercase tracking-[0.4em] text-gold-300">Project Overview</p>
+        <h2 class="mt-3 text-3xl font-light sm:text-4xl">사업개요</h2>
+        <div class="mt-4 h-px w-16 bg-gold"></div>
+      </div>
+
+      <div class="reveal delay-1 mt-14 overflow-hidden gold-border">
+        <table class="w-full text-left text-sm sm:text-base">
+          <tbody class="divide-y divide-gold/15">
+            <tr class="bg-white/[0.03]"><th class="w-32 px-5 py-4 font-medium text-gold-300 sm:w-56 sm:px-8">단지명</th><td class="px-5 py-4 text-white/90 sm:px-8">상동역 롯데캐슬 시그니처</td></tr>
+            <tr><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">사업명</th><td class="px-5 py-4 text-white/90 sm:px-8">부천 상동 홈플러스 개발사업</td></tr>
+            <tr class="bg-white/[0.03]"><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">대지위치</th><td class="px-5 py-4 text-white/90 sm:px-8">경기도 부천시 원미구 상동 540-1번지 일원</td></tr>
+            <tr><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">규모</th><td class="px-5 py-4 text-white/90 sm:px-8">지하 8층 ~ 지상 49층, 7개동</td></tr>
+            <tr class="bg-white/[0.03]"><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">세대수</th><td class="px-5 py-4 text-white/90 sm:px-8">총 1,859세대 (전용 84~192㎡)</td></tr>
+            <tr><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">주차대수</th><td class="px-5 py-4 text-white/90 sm:px-8">세대당 약 1.55대 (아파트 약 2,888대 규모)</td></tr>
+            <tr class="bg-white/[0.03]"><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">대지면적</th><td class="px-5 py-4 text-white/90 sm:px-8">29,968.70㎡ (약 9,066평)</td></tr>
+            <tr><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">건폐율 / 용적률</th><td class="px-5 py-4 text-white/90 sm:px-8">58.57% / 849.91%</td></tr>
+            <tr class="bg-white/[0.03]"><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">입주예정</th><td class="px-5 py-4 text-white/90 sm:px-8">2032년 03월 예정</td></tr>
+            <tr><th class="px-5 py-4 font-medium text-gold-300 sm:px-8">시행 / 시공</th><td class="px-5 py-4 text-white/90 sm:px-8">주식회사 미래도시 / 롯데건설(주)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="reveal mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div class="gold-border bg-navy-800 px-5 py-6 text-center">
+          <p class="text-3xl font-light text-gold-300">49F</p>
+          <p class="mt-1 text-xs text-white/60">최고 층수</p>
+        </div>
+        <div class="gold-border bg-navy-800 px-5 py-6 text-center">
+          <p class="text-3xl font-light text-gold-300">7</p>
+          <p class="mt-1 text-xs text-white/60">동</p>
+        </div>
+        <div class="gold-border bg-navy-800 px-5 py-6 text-center">
+          <p class="text-3xl font-light text-gold-300">1,859</p>
+          <p class="mt-1 text-xs text-white/60">세대</p>
+        </div>
+        <div class="gold-border bg-navy-800 px-5 py-6 text-center">
+          <p class="text-3xl font-light text-gold-300">1.55</p>
+          <p class="mt-1 text-xs text-white/60">세대당 주차</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="premium" class="relative bg-navy py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="reveal max-w-2xl">
+        <p class="text-[11px] uppercase tracking-[0.4em] text-gold-300">Signature Values</p>
+        <h2 class="mt-3 text-3xl font-light sm:text-4xl">6대 핵심 가치</h2>
+        <p class="mt-4 text-white/60">상동역세권의 희소성과 1군 브랜드 스케일, 미래 교통망이 만드는 시그니처 프리미엄.</p>
+        <div class="mt-4 h-px w-16 bg-gold"></div>
+      </div>
+
+      <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <article class="reveal gold-border bg-navy-800/60 p-8 transition hover:bg-navy-800">
+          <p class="text-xs tracking-[0.3em] text-gold-300">01</p>
+          <h3 class="mt-4 text-xl font-medium">7호선 초역세권 교통 프리미엄</h3>
+          <p class="mt-3 text-sm leading-relaxed text-white/65">지하철 7호선 상동역 1번 출구와 맞닿은 입지. 가산디지털단지·강남 등 서울 업무지구 접근성이 뛰어나며, 중동IC를 통해 수도권제1순환고속도로·경인고속도로 진입이 편리합니다.</p>
+        </article>
+        <article class="reveal delay-1 gold-border bg-navy-800/60 p-8 transition hover:bg-navy-800">
+          <p class="text-xs tracking-[0.3em] text-gold-300">02</p>
+          <h3 class="mt-4 text-xl font-medium">1,859세대 1군 브랜드 대단지</h3>
+          <p class="mt-3 text-sm leading-relaxed text-white/65">롯데캐슬 시그니처가 선보이는 7개동 1,859세대 스케일. 전용 84㎡ 중심의 실수요 평면과 113·121㎡ 중대형, 최상층 펜트하우스까지 단지 가치를 완성합니다.</p>
+        </article>
+        <article class="reveal delay-2 gold-border bg-navy-800/60 p-8 transition hover:bg-navy-800">
+          <p class="text-xs tracking-[0.3em] text-gold-300">03</p>
+          <h3 class="mt-4 text-xl font-medium">중·상동 신축 희소성</h3>
+          <p class="mt-3 text-sm leading-relaxed text-white/65">노후 아파트가 밀집한 중·상동 일대에서 49층 신축 랜드마크의 희소성이 두드러집니다. 주변 구축 대비 압도적인 상품성·안전마진이 기대되는 입지입니다.</p>
+        </article>
+        <article class="reveal gold-border bg-navy-800/60 p-8 transition hover:bg-navy-800">
+          <p class="text-xs tracking-[0.3em] text-gold-300">04</p>
+          <h3 class="mt-4 text-xl font-medium">GTX-B·D &amp; 상동특별계획구역</h3>
+          <p class="mt-3 text-sm leading-relaxed text-white/65">GTX-B 착공과 GTX-D 추진, 상동특별계획구역 등 광역 교통·도시개발 호재가 중첩됩니다. 여의도·용산·서울역 등 도심 접근성이 한층 강화될 전망입니다.</p>
+        </article>
+        <article class="reveal delay-1 gold-border bg-navy-800/60 p-8 transition hover:bg-navy-800">
+          <p class="text-xs tracking-[0.3em] text-gold-300">05</p>
+          <h3 class="mt-4 text-xl font-medium">3면 발코니 · 럭셔리 커뮤니티</h3>
+          <p class="mt-3 text-sm leading-relaxed text-white/65">일부 타입 3면 발코니 특화와 우물천장으로 서비스 면적·개방감을 극대화했습니다. 그린램프 라이브러리, 실내수영장, 골프클럽 등 호텔급 커뮤니티를 단지 안에서 누립니다.</p>
+        </article>
+        <article class="reveal delay-2 gold-border bg-navy-800/60 p-8 transition hover:bg-navy-800">
+          <p class="text-xs tracking-[0.3em] text-gold-300">06</p>
+          <h3 class="mt-4 text-xl font-medium">안심 계약 · 자금 헷징 시스템</h3>
+          <p class="mt-3 text-sm leading-relaxed text-white/65">계약금 1천만 원 정액제, 중도금 무이자, 발코니 확장 무상으로 초기 자금 부담을 낮췄습니다. 계약 조건 안심 보장제와 자금 헷징 시스템으로 실수요자의 진입 장벽을 완화합니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="location" class="relative bg-navy-900 py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="reveal">
+        <p class="text-[11px] uppercase tracking-[0.4em] text-gold-300">Location &amp; Future Value</p>
+        <h2 class="mt-3 text-3xl font-light sm:text-4xl">입지환경 및 미래가치</h2>
+        <p class="mt-4 max-w-2xl text-white/60">역세권·학세권·슬세권이 겹치는 완성된 생활권, 그리고 광역 교통 호재가 더해지는 미래가치.</p>
+        <div class="mt-4 h-px w-16 bg-gold"></div>
+      </div>
+
+      <div class="mt-16 grid gap-8 lg:grid-cols-2">
+        <div class="reveal space-y-6">
+          <div class="gold-border bg-navy p-7">
+            <h3 class="text-lg text-gold-300">초역세권 인프라</h3>
+            <p class="mt-3 text-sm leading-relaxed text-white/70">7호선 상동역 초역세권으로 서울 주요 업무지구 이동이 편리합니다. 중동IC를 통한 광역 도로망과 부천터미널 소풍이 더해져, 출퇴근과 주말 이동 모두 수월합니다.</p>
+          </div>
+          <div class="gold-border bg-navy p-7">
+            <h3 class="text-lg text-gold-300">쇼핑 · 의료 · 행정</h3>
+            <p class="mt-3 text-sm leading-relaxed text-white/70">현대백화점 중동점, 롯데백화점 중동점, 뉴코아아울렛, 이마트 등 대형 상업시설과 순천향대학교 부천병원, 부천시청이 인접합니다. 단지 내 대형마트 입점도 계획되어 일상 대부분을 도보권에서 해결합니다.</p>
+          </div>
+          <div class="gold-border bg-navy p-7">
+            <h3 class="text-lg text-gold-300">교육 · 녹지</h3>
+            <p class="mt-3 text-sm leading-relaxed text-white/70">상일초·상일중 도보권, 상원초·상원고·상일고와 상동 메인 학원가가 가깝습니다. 부천중앙공원, 안중근공원, 계남공원 등 녹지 인프라도 풍부합니다.</p>
+          </div>
+        </div>
+        <div class="reveal delay-1 relative min-h-[420px] overflow-hidden gold-border bg-navy">
+    <!-- EMBEDDED IMAGE LINE 268 LEN=386690 -->
+          <div class="absolute inset-0 bg-navy/55"></div>
+          <div class="relative flex h-full flex-col justify-between p-8 sm:p-10">
+            <div>
+              <p class="text-[11px] tracking-[0.35em] text-gold-300">FUTURE AXIS</p>
+              <h3 class="mt-4 text-2xl font-light">GTX · 상동특별계획구역</h3>
+              <p class="mt-4 text-sm leading-relaxed text-white/70">GTX-B 노선 착공과 GTX-D 추진이 더해지면 여의도·용산·서울역 접근성이 한층 높아집니다. 상동특별계획구역과 중동 1기 신도시 재정비, 대장지구 R&amp;D 개발 수혜가 중첩되는 미래 성장축입니다.</p>
+            </div>
+            <ul class="mt-10 space-y-3 text-sm">
+              <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span>GTX-B · GTX-D 광역 교통 호재</li>
+              <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span>상동특별계획구역 도시 기능 강화</li>
+              <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span>중동 재건축·재개발 주거환경 개선</li>
+              <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span>대장지구 R&amp;D 클러스터 연계 기대</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="relative bg-navy py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="reveal">
+        <p class="text-[11px] uppercase tracking-[0.4em] text-gold-300">Lifestyle Community</p>
+        <h2 class="mt-3 text-3xl font-light sm:text-4xl">럭셔리 커뮤니티</h2>
+        <p class="mt-4 max-w-2xl text-white/60">지하 1층부터 지상 3층까지, 운동·교육·휴식이 한 단지 안에서 이어집니다.</p>
+        <div class="mt-4 h-px w-16 bg-gold"></div>
+      </div>
+      <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="reveal border border-gold/25 bg-navy-800/40 p-6">
+          <p class="text-xs tracking-widest text-gold-300">B1</p>
+          <h3 class="mt-2 font-medium">스포츠 클럽</h3>
+          <p class="mt-2 text-sm text-white/60">실내골프클럽 · 스크린골프 · AI퍼팅그린 · 사우나</p>
+        </div>
+        <div class="reveal delay-1 border border-gold/25 bg-navy-800/40 p-6">
+          <p class="text-xs tracking-widest text-gold-300">1F</p>
+          <h3 class="mt-2 font-medium">웰니스 · 케어</h3>
+          <p class="mt-2 text-sm text-white/60">실내수영장 · GX룸 · 어린이집 · 다함께돌봄센터</p>
+        </div>
+        <div class="reveal delay-2 border border-gold/25 bg-navy-800/40 p-6">
+          <p class="text-xs tracking-widest text-gold-300">2F</p>
+          <h3 class="mt-2 font-medium">그린램프 라이브러리</h3>
+          <p class="mt-2 text-sm text-white/60">140석+ 관리형 독서실 · 피트니스 · 에듀클럽</p>
+        </div>
+        <div class="reveal delay-3 border border-gold/25 bg-navy-800/40 p-6">
+          <p class="text-xs tracking-widest text-gold-300">3F</p>
+          <h3 class="mt-2 font-medium">소셜 라운지</h3>
+          <p class="mt-2 text-sm text-white/60">L-다이닝카페 · PDR · 게스트룸 · 시니어클럽</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="register" class="relative bg-navy-900 py-24 lg:py-32">
+    <div class="mx-auto max-w-3xl px-5 lg:px-8">
+      <div class="reveal text-center">
+        <p class="text-[11px] uppercase tracking-[0.4em] text-gold-300">Private Invitation</p>
+        <h2 class="mt-3 text-3xl font-light sm:text-4xl">관심고객 등록</h2>
+        <p class="mt-4 text-white/60">성함, 연락처, 관심 평형을 남겨 주시면 분양 상담을 안내해 드립니다.</p>
+        <div class="mx-auto mt-4 h-px w-16 bg-gold"></div>
+      </div>
+
+      <form id="lead-form" class="reveal delay-1 mt-12 space-y-6 gold-border bg-navy p-6 sm:p-10" novalidate>
+        <div>
+          <label for="name" class="block text-xs tracking-widest text-gold-300">성함 *</label>
+          <input id="name" name="name" type="text" required autocomplete="name" placeholder="홍길동"
+            class="mt-2 w-full border-0 border-b border-white/20 bg-transparent py-3 text-white placeholder:text-white/30" />
+        </div>
+        <div>
+          <label for="phone" class="block text-xs tracking-widest text-gold-300">연락처 *</label>
+          <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="numeric" placeholder="010-0000-0000" maxlength="13"
+            class="mt-2 w-full border-0 border-b border-white/20 bg-transparent py-3 text-white placeholder:text-white/30" />
+        </div>
+        <div>
+          <label for="type" class="block text-xs tracking-widest text-gold-300">관심 평형 (타입) *</label>
+          <select id="type" name="type" required
+            class="mt-2 w-full appearance-none border-0 border-b border-white/20 bg-transparent py-3 text-white">
+            <option value="">선택해 주세요</option>
+            <option value="84A">84A TYPE</option>
+            <option value="84B">84B TYPE</option>
+            <option value="84C">84C TYPE</option>
+            <option value="84D">84D TYPE</option>
+            <option value="84E">84E TYPE</option>
+            <option value="84F">84F TYPE</option>
+            <option value="113A">113A TYPE</option>
+            <option value="113B">113B TYPE</option>
+            <option value="121">121 TYPE</option>
+            <option value="PH">펜트하우스 (153P / 187P / 192P)</option>
+            <option value="undecided">미정 · 상담 후 결정</option>
+          </select>
+        </div>
+        <label class="flex items-start gap-3 text-xs leading-relaxed text-white/55">
+          <input id="agree" type="checkbox" required class="mt-0.5 accent-[#C5A059]" />
+          <span>개인정보 수집 및 이용에 동의합니다. (상담 안내 목적, 보유기간 3년, 필수항목: 성함·연락처)</span>
+        </label>
+        <p id="form-error" class="hidden text-sm text-red-300" role="alert"></p>
+        <button type="submit" class="w-full rounded-full bg-gold py-4 text-sm font-semibold tracking-wide text-navy transition hover:bg-gold-300">
+          상담 신청하기
+        </button>
+      </form>
+
+      <div id="form-success" class="mt-12 hidden gold-border bg-navy p-10 text-center" role="status">
+        <p class="text-sm tracking-[0.3em] text-gold-300">COMPLETE</p>
+        <h3 class="mt-4 text-2xl font-light">관심고객 등록이 완료되었습니다</h3>
+        <p class="mt-3 text-white/65">남겨 주신 연락처로 분양 상담을 안내해 드리겠습니다.<br />상동역 롯데캐슬 시그니처에 관심을 가져 주셔서 감사합니다.</p>
+        <button id="reset-form" type="button" class="mt-8 text-sm text-gold-300 underline underline-offset-4">다른 정보로 다시 등록</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-gold/20 bg-navy-900 py-16">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-3">
+        <div>
+          <p class="text-[11px] tracking-[0.28em] text-gold-300">LOTTE CASTLE SIGNATURE</p>
+          <p class="mt-3 text-lg">상동역 롯데캐슬 시그니처</p>
+          <p class="mt-2 text-sm text-white/50">대표번호 1522-5043</p>
+        </div>
+        <div class="space-y-1 text-sm text-white/60">
+          <p><span class="text-gold-300">시행</span> 주식회사 미래도시</p>
+          <p><span class="text-gold-300">시공</span> 롯데건설(주)</p>
+          <p class="pt-3"><span class="text-gold-300">분양 홍보관(견본주택)</span></p>
+          <p>경기도 부천시 원미구 상동 529-38 일원</p>
+          <p class="text-white/40">대지: 경기도 부천시 원미구 상동 540-1번지 일원</p>
+        </div>
+        <p class="text-xs leading-relaxed text-white/40">
+          본 홍보물의 내용은 소비자의 이해를 돕기 위한 것으로 실제와 다를 수 있습니다. 단지 명칭, 세대수, 층수, 커뮤니티, 교통·개발호재, 계약조건 등은 인허가 및 사업 여건에 따라 변경될 수 있으며, 청약 및 계약 전 입주자모집공고와 견본주택 안내를 반드시 확인하시기 바랍니다.
+        </p>
+      </div>
+      <div class="mt-12 h-px gold-line"></div>
+      <p class="mt-6 text-center text-[11px] tracking-widest text-white/30">© 상동역 롯데캐슬 시그니처. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#register" class="fixed bottom-5 right-5 z-40 rounded-full bg-gold px-5 py-3 text-xs font-semibold text-navy shadow-lg xl:hidden">관심고객 등록</a>
+
+  <script>
+    const header = document.getElementById("site-header");
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const form = document.getElementById("lead-form");
+    const success = document.getElementById("form-success");
+    const errorEl = document.getElementById("form-error");
+    const phoneInput = document.getElementById("phone");
+
+    const onScroll = () => {
+      if (window.scrollY > 24) {
+        header.classList.add("bg-navy-900/90", "backdrop-blur-md", "border-b", "border-gold/15");
+      } else {
+        header.classList.remove("bg-navy-900/90", "backdrop-blur-md", "border-b", "border-gold/15");
+      }
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    menuBtn.addEventListener("click", () => {
+      const open = mobileMenu.classList.toggle("hidden") === false;
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+    document.querySelectorAll(".mobile-link").forEach((el) => {
+      el.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    phoneInput.addEventListener("input", () => {
+      const digits = phoneInput.value.replace(/\D/g, "").slice(0, 11);
+      if (digits.length < 4) phoneInput.value = digits;
+      else if (digits.length < 8) phoneInput.value = digits.slice(0, 3) + "-" + digits.slice(3);
+      else phoneInput.value = digits.slice(0, 3) + "-" + digits.slice(3, 7) + "-" + digits.slice(7);
+    });
+
+    const phoneOk = (v) => /^01[0-9]-?\d{3,4}-?\d{4}$/.test(v.replace(/\s/g, ""));
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      errorEl.classList.add("hidden");
+      const name = form.name.value.trim();
+      const phone = form.phone.value.trim();
+      const type = form.type.value;
+      const agree = document.getElementById("agree").checked;
+
+      if (!name || !phone || !type || !agree) {
+        errorEl.textContent = "필수 항목을 모두 입력하고 개인정보 이용에 동의해 주세요.";
+        errorEl.classList.remove("hidden");
+        return;
+      }
+      if (!phoneOk(phone)) {
+        errorEl.textContent = "연락처를 올바르게 입력해 주세요. 예: 010-1234-5678";
+        errorEl.classList.remove("hidden");
+        return;
+      }
+
+      form.classList.add("hidden");
+      success.classList.remove("hidden");
+      success.classList.add("reveal", "is-in");
+      success.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("reset-form").addEventListener("click", () => {
+      form.reset();
+      success.classList.add("hidden");
+      form.classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
+
